@@ -1,11 +1,13 @@
 .header {
-
+float: right;
+padding-right: 25px;
 }
 
 .body {
-
+text-align: center;
+border-color: green;
 }
 
-.id {
-    
+h1 {
+padding-top: 50px;
 }
