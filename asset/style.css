@@ -11,3 +11,7 @@ border-color: green;
 h1 {
 padding-top: 50px;
 }
+
+.button {
+    float: center;
+}

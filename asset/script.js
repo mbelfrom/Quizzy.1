@@ -4,21 +4,25 @@ const quizQuestions = [
         options: ["Tetris", "GTA V", "Metal Gear", "God of War"],
         correctIndex: 2,
     },
+
     {
         text: "How tall am I?",
         options: ["5'10", "6'2", "6'5", "5'8"],
         correctIndex: 2,
     },
+
     {
         text: "What is the most recent skill or hobby I've learned?",
         options: ["Gardening", "Sewing", "Coding", "Flying"],
         correctIndex: 0,
     },
+
     {
         text: "What was my favorite subject?",
         options: ["Math", "Science", "History", "Business Law"],
         correctIndex: 3,
     },
+
     {
         text: "What gives me trouble in Javascript?",
         options: ["If statements", "Loops", "DOMs", "Arrays"],
@@ -31,13 +35,14 @@ const optionsEl = document.querySelector("#options");
 let questionIndex = 0;
 
 function renderQuestion() {
-    const quizQuestions = quiz[questionsIndex];
+    const quiz = quizQuestions[questionIndex];
     // Set the text for our questions
     quizQuestionsEl.textContent = quizQuestions[questionIndex].text;
     // Render our options
     // clear out the options div to remove previous buttons
+
     // create a button
-    for (let i = 0; i < quizQuestions.options.length; i++) {
+    for (let i = 0; i < quiz.options.length; i++) {
         // reference the option text
         const option = quiz.options[i];
         // create a button
@@ -49,23 +54,31 @@ function renderQuestion() {
     }
 }
 
-renderQuestion();
-
-optionsEl.addEventListener("click", function (e) {
+optionsEl.addEventListener("click", function(e) {
     const element = e.target;
-    const question = quiz[questionIndex];
+    const question = quizQuestions[questionIndex];
 
     if(!element.matches("button")) return;
 
     // Check to see if the user answered correctly 
-    if (element.textContent === question.options[quiz.correctIndex]) {
+    if (element.textContent === question.options[question.correctIndex]) {
         // inform them
-        alert("Correct!");
+        alert("Correct!"); 
     } else {
         alert("Wrong!");
     }
+    
+    if (questionIndex < quizQuestions.length-1) {
+        optionsEl.innerHTML="";
+        questionIndex++
+        renderQuestion();
+}
+    if (questionIndex + 1 === quizQuestions.length) {
+        quizQuestionsEl.innerHTML=""
+        optionsEl.innerHTML = "";
+    }
+
+
     // increase our question index
-    questionIndex++;
-    // rerender our question
-    renderQuestion();
+    // re-render our question
 });
