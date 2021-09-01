@@ -20,6 +20,8 @@ This application is a multiple choice quiz
 
 ## Images
 
+![Homework Screenshot](./asset/Quiz.jpg)
+
 ## Contact/Questions
 
 This password generator can be accessed from the following link (https://mbelfrom.github.io/Quizzy.1/)
