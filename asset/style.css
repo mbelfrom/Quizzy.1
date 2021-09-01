@@ -13,5 +13,11 @@ padding-top: 50px;
 }
 
 .button {
-    float: center;
+float: center;
 }
+
+#questions {
+padding-top: 50px;
+text-align: center;
+}
+

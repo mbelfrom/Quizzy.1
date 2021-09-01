@@ -32,7 +32,41 @@ const quizQuestions = [
 
 const quizQuestionsEl = document.querySelector("#question");
 const optionsEl = document.querySelector("#options");
+const bodyEl = document.querySelector(".body");
+const startButton = document.querySelector("#submit");
+const timer = document.querySelector(".timer");
 let questionIndex = 0;
+
+function onStart() {
+    renderQuestion();
+    startTimer();   
+    document.getElementById("submit").disabled=true;
+
+}
+
+let time = 60;
+
+function startTimer () {
+    let interval = setInterval(() => {
+        time--;
+        timer.textContent = time;
+        if (time <= 0) {
+            clearInterval(interval);
+            timer.textContent = "Game Over";
+        }
+    }, 1000);
+}
+
+function endGame() {
+    time=0;
+    timer.textContent = "Game Over!";
+    quizQuestionsEl.innerHTML = ''
+    optionsEl.innerHTML = "";
+    questionIndex = 0
+    document.getElementById("submit").disabled=false;
+
+}
+
 
 function renderQuestion() {
     const quiz = quizQuestions[questionIndex];
@@ -66,6 +100,7 @@ optionsEl.addEventListener("click", function(e) {
         alert("Correct!"); 
     } else {
         alert("Wrong!");
+        time -= 10;
     }
     
     if (questionIndex < quizQuestions.length-1) {
@@ -74,11 +109,10 @@ optionsEl.addEventListener("click", function(e) {
         renderQuestion();
 }
     if (questionIndex + 1 === quizQuestions.length) {
-        quizQuestionsEl.innerHTML=""
-        optionsEl.innerHTML = "";
+       endGame();
     }
 
-
+});
+    startButton.addEventListener("click", onStart);
     // increase our question index
     // re-render our question
-});
